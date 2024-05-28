@@ -1,11 +1,11 @@
-# Docker Facebook Demucs
-This repository dockerizes [Facebook Demucs](https://github.com/facebookresearch/demucs)
+# Docker adefossez Demucs
+This repository dockerizes [adefossez Demucs](https://github.com/adefossez/demucs)
 to split music tracks into different tracks (bass, drums, voice, others).
 
 ## Usage
 ### Clone this repository
 ```bash
-git clone https://github.com/xserrat/docker-facebook-demucs.git demucs
+git clone https://github.com/stevemisel/docker-adefossez-demucs.git demucs
 ```
 ### Split a music track
 1. Copy the track you want to split into the `input` folder (e.g., `input/mysong.mp3`).
@@ -15,7 +15,7 @@ make run track=mysong.mp3
 ```
 
 This process will take some time the first time it is run, as the execution will:
-* Download the Docker image that is setup to run the `facebook demucs` script.
+* Download the Docker image that is setup to run the `adefossez demucs` script.
 * Download the pretrained models.
 * Execute `demucs` to split the track.
 
@@ -27,7 +27,7 @@ The following options are available when splitting music tracks with the `run` j
 Option | Default Value | Description
 --- | --- | ---
 `gpu`           | `false` | Enable Nvidia CUDA support (requires an Nvidia GPU).
-`model`         | `demucs`| The model used for audio separation. See https://github.com/facebookresearch/demucs#separating-tracks for a list of available models to use.
+`model`         | `demucs`| The model used for audio separation. See https://github.com/adefossez/demucs#separating-tracks for a list of available models to use.
 `mp3output`     | `false` | Output separated audio in `mp3` format instead of the default `wav` format.
 `splittrack`    |         | Individual track to split/separate from the others (e.g., you only want to separate drums). Valid options are `bass`, `drums`, `vocals` and `other`. Other values may be allowed if the model can separate additional track types.
 
