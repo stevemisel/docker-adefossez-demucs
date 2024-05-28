@@ -8,7 +8,7 @@ ENV OMP_NUM_THREADS=1
 # Install required tools
 # Notes:
 #  - build-essential and python3-dev are included for platforms that may need to build some Python packages (e.g., arm64)
-#  - torchaudio >= 0.12 now requires ffmpeg on Linux, see https://github.com/facebookresearch/demucs/blob/main/docs/linux.md
+#  - torchaudio >= 0.12 now requires ffmpeg on Linux, see https://github.com/adefossez/demucs/blob/main/docs/linux.md
 RUN apt update && apt install -y --no-install-recommends \
     build-essential \
     ffmpeg \
@@ -18,12 +18,13 @@ RUN apt update && apt install -y --no-install-recommends \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-# Clone Facebook Demucs
-RUN git clone --depth 1 --branch v4.0.0 --single-branch https://github.com/facebookresearch/demucs /lib/demucs
+# Clone adefossez Demucs
+RUN git clone --depth 1 --branch main --single-branch https://github.com/adefossez/demucs /lib/demucs
 WORKDIR /lib/demucs
 
 # Install dependencies
 RUN python3 -m pip install -e . --no-cache-dir
+RUN python3 -m pip install PySoundFile --no-cache-dir
 # Run once to ensure demucs works and trigger the default model download
 RUN python3 -m demucs -d cpu test.mp3 
 # Cleanup output - we just used this to download the model
