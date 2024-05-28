@@ -35,7 +35,7 @@ run: init build ## Run demucs to split the specified track in the input folder
 		-v $(current-dir)input:/data/input \
 		-v $(current-dir)output:/data/output \
 		-v $(current-dir)models:/data/models \
-		xserrat/facebook-demucs:latest \
+		stevemisel/adefossez-demucs:latest \
 		"python3 -m demucs -n $(model) \
 			--out /data/output \
 			$(demucs-mp3-option) \
@@ -51,10 +51,10 @@ run-interactive: init build ## Run the docker container interactively to experim
 		-v $(current-dir)input:/data/input \
 		-v $(current-dir)output:/data/output \
 		-v $(current-dir)models:/data/models \
-		xserrat/facebook-demucs:latest \
+		stevemisel/adefossez-demucs:latest \
 		/bin/bash
 
 .PHONY:
 .SILENT:
 build: ## Build the docker image which supports running demucs with CPU only or with Nvidia CUDA on a supported GPU
-	docker build -t xserrat/facebook-demucs:latest .
+	docker build -t stevemisel/adefossez-demucs:latest .
